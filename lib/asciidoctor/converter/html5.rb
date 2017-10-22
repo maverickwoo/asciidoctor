@@ -278,7 +278,18 @@ MathJax.Hub.Config({
     delimiters: [#{BLOCK_MATH_DELIMITERS[:asciimath].inspect}],
     ignoreClass: "nostem|noasciimath"
   },
-  TeX: {#{eqnums_opt}}
+TeX: {
+  Macros: {
+    infer: [
+      "\\\\begin{array}[b]{c c}" +
+      "\\\\style{border-bottom:1px solid;padding-bottom: 0.5em;}{\\\\begin{array}[b]{c c}" +
+      "#3 \\\\\\\\" +
+      "\\\\end{array}} & \\\\hspace{-0.5em}\\\\raise{-1.1em}{#1} \\\\\\\\" +
+      "#2" +
+      "\\\\end{array}", 3, ""
+    ]
+  },
+  #{eqnums_opt}}
 })
 MathJax.Hub.Register.StartupHook("AsciiMath Jax Ready", function () {
   MathJax.InputJax.AsciiMath.postfilterHooks.Add(function (data, node) {
